@@ -1,11 +1,10 @@
-using System;
 using System.Linq;
 using Pathfinding;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    private MeshRenderer _meshRenderer;
+    private Outline[] _outlines;
     private AIPath _aiPath;
     
     private UnitData _unitData;
@@ -13,9 +12,6 @@ public class Unit : MonoBehaviour
     private UnitType _enemyType;
 
     private UnitType EnemyType => _enemyType;
-
-    private void OnEnable() => 
-        CheckNewEnemy();
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -31,8 +27,8 @@ public class Unit : MonoBehaviour
     {
         _playerData = playerData;
         _unitData = unitData;
-        
-        _meshRenderer = GetComponentInChildren<MeshRenderer>();
+
+        _outlines = GetComponentsInChildren<Outline>();
         _aiPath = GetComponent<AIPath>();
 
         SetEnemyType(unitData);
@@ -45,7 +41,7 @@ public class Unit : MonoBehaviour
         _aiPath.destination = enemyTower.transform.position;
     }
 
-    private void CheckNewEnemy()
+    public void CheckNewEnemy()
     {
         var enemy = FindEnemy();
 
@@ -65,9 +61,6 @@ public class Unit : MonoBehaviour
     {
         var allUnits = FindObjectsOfType<Unit>();
         var enemy = allUnits.FirstOrDefault(unit => unit.EnemyType == EnemyType);
-
-        Debug.Log($"{gameObject.name} enemy = {enemy}");
-        Debug.DrawLine(transform.position, enemy.transform.position, Color.red);
         return enemy;
     }
 
@@ -84,8 +77,11 @@ public class Unit : MonoBehaviour
             _enemyType = UnitType.Stone;
     }
 
-    private void SetupView(PlayerData playerData) => 
-        _meshRenderer.material.color = playerData.Material.color;
+    private void SetupView(PlayerData playerData)
+    {
+        foreach (var outline in _outlines)
+            outline.OutlineColor = playerData.Material.color;
+    }
 
     public void DestroyUnit() => 
         Destroy(gameObject);

@@ -53,12 +53,14 @@ public class PlayerController : MonoBehaviour
                 var enemy = _factory.CreateUnit(positionWithOffset, unitData.AssetPath);
                 enemy.transform.rotation = Quaternion.Euler(0, 180, 0);
                 enemy.Initialize(_playerData, unitData);
+                enemy.CheckNewEnemy();
             }
 
             if (_playerData.Type == PlayerType.Player1)
             {
                 var enemy = _factory.CreateUnit(positionWithOffset, unitData.AssetPath);
                 enemy.Initialize(_playerData, unitData);
+                enemy.CheckNewEnemy();
             }
         }
     }
