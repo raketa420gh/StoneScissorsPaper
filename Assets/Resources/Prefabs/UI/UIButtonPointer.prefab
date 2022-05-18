@@ -134,8 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b71605edf648d3b1a72438dd6740b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerType: 1
-  _unitData: {fileID: 11400000, guid: b5dd8871d80ba4a45b6a9dc53c38b3c1, type: 2}
+  _unitData: {fileID: 11400000, guid: ece6b3c8ce3c67a4382c773b69c2b697, type: 2}
   _icon: {fileID: 7816626406218762913}
 --- !u!1 &4141323107948312524
 GameObject:
@@ -195,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9245283, g: 0.9117397, b: 0.17007834, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

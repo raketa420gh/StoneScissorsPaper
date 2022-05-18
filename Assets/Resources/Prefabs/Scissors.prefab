@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 312019058853450792}
-  - component: {fileID: 312019058853450795}
+  - component: {fileID: 339975153859149224}
   - component: {fileID: 3784255693928708363}
   - component: {fileID: 1584377236050107895}
   - component: {fileID: 2708587504506159269}
-  - component: {fileID: 339975153859149224}
+  - component: {fileID: 312019058853450795}
+  - component: {fileID: 159581592484828787}
   m_Layer: 0
   m_Name: Scissors
   m_TagString: Untagged
@@ -36,18 +37,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &312019058853450795
-MonoBehaviour:
+--- !u!136 &339975153859149224
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312019058853450794}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f29e30105ef544080b89d09e41a60b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 0.25
+  m_Height: 1.35945
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!54 &3784255693928708363
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -134,20 +137,37 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
---- !u!136 &339975153859149224
-CapsuleCollider:
+--- !u!114 &312019058853450795
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312019058853450794}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.25
-  m_Height: 1.35945
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f29e30105ef544080b89d09e41a60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &159581592484828787
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312019058853450794}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 158053ad816a3b64fadd50eef107e155, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &312019058714331715
 PrefabInstance:
   m_ObjectHideFlags: 0

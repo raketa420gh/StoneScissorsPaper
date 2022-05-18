@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (var uiButtonPointer in _uiButtonPointers)
         {
-            uiButtonPointer.Initialize(_playerData);
+            uiButtonPointer.Initialize();
             uiButtonPointer.OnPointerDragEnd += OnPointerDragEnd;
         }
         
@@ -35,7 +35,13 @@ public class PlayerController : MonoBehaviour
     public void Deactivate() => 
         _uiPanel.SetActive(false);
 
-    private void OnPointerDragEnd(string path, Pointer pointer, Vector3 position)
+    public void HideAllPointers()
+    {
+        foreach (var uiButtonPointer in _uiButtonPointers)
+            uiButtonPointer.HidePointer();
+    }
+
+    private void TryToCreateUnit(UnitData unitData, Pointer pointer, Vector3 position)
     {
         var offset = 1f;
         var positionWithOffset = new Vector3(position.x, position.y + offset, position.z);
@@ -44,18 +50,19 @@ public class PlayerController : MonoBehaviour
         {
             if (_playerData.Type == PlayerType.Player2)
             {
-                var enemy = _factory.CreateUnit(positionWithOffset, path);
+                var enemy = _factory.CreateUnit(positionWithOffset, unitData.AssetPath);
                 enemy.transform.rotation = Quaternion.Euler(0, 180, 0);
-                enemy.Initialize(_playerData);
-                enemy.MoveToEnemyTower();
+                enemy.Initialize(_playerData, unitData);
             }
-            
+
             if (_playerData.Type == PlayerType.Player1)
             {
-                var enemy = _factory.CreateUnit(positionWithOffset, path);
-                enemy.Initialize(_playerData);
-                enemy.MoveToEnemyTower();
+                var enemy = _factory.CreateUnit(positionWithOffset, unitData.AssetPath);
+                enemy.Initialize(_playerData, unitData);
             }
         }
     }
+
+    private void OnPointerDragEnd(UnitData unitData, Pointer pointer, Vector3 position) => 
+        TryToCreateUnit(unitData, pointer, position);
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1584377236050107895}
   - component: {fileID: 2708587504506159269}
   - component: {fileID: 9171262209536615805}
+  - component: {fileID: 2129313369439121093}
   m_Layer: 0
   m_Name: Stone
   m_TagString: Untagged
@@ -147,6 +148,25 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!95 &2129313369439121093
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312019058853450794}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 158053ad816a3b64fadd50eef107e155, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2016323534969819094
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +179,7 @@ GameObject:
   - component: {fileID: 7634389196556136977}
   - component: {fileID: 5915152602884479889}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 2016323534969819094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 312019058853450792}
   m_RootOrder: 0

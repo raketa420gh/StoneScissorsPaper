@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -73,7 +72,8 @@ public class GameLoop : MonoBehaviour
         if (fromPlayer == 2)
             ActivatePlayer(1);
         
-        Debug.Log($"{_activePlayerNumber} Player");
+        _playerController1.HideAllPointers();
+        _playerController2.HideAllPointers();
     }
 
     private int GetRandomPlayerIndex()
