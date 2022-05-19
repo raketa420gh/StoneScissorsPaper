@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
         }
         
         _creationZone.Initialize(_playerData);
+        _unitsCounter.AddTower(_tower);
         _tower.Initialize(_playerData);
     }
 
@@ -54,23 +56,23 @@ public class PlayerController : MonoBehaviour
         {
             if (_playerData.Type == PlayerType.Player2)
             {
-                var unit = _factory.CreateUnit(positionWithOffset, unitData.AssetPath);
+                var unit = CreateUnit(unitData, positionWithOffset);
                 unit.transform.rotation = Quaternion.Euler(0, 180, 0);
-                unit.Initialize(_playerData, unitData);
-                _unitsCounter.AddUnit(unit);
-                var enemyTransform = unit.CheckNewEnemy();
-                unit.MoveToEnemy(enemyTransform);
             }
 
             if (_playerData.Type == PlayerType.Player1)
             {
-                var unit = _factory.CreateUnit(positionWithOffset, unitData.AssetPath);
-                unit.Initialize(_playerData, unitData);
-                _unitsCounter.AddUnit(unit);
-                var enemyTransform = unit.CheckNewEnemy();
-                unit.MoveToEnemy(enemyTransform);
+                var unit = CreateUnit(unitData, positionWithOffset);
             }
         }
+    }
+
+    private Unit CreateUnit(UnitData unitData, Vector3 positionWithOffset)
+    {
+        var unit = _factory.CreateUnit(positionWithOffset, unitData.AssetPath);
+        unit.Initialize(_playerData, unitData);
+        _unitsCounter.AddUnit(unit);
+        return unit;
     }
 
     private void OnPointerDragEnd(UnitData unitData, Pointer pointer, Vector3 position) => 
