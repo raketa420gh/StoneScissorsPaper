@@ -1,17 +1,28 @@
+using System;
 using System.Linq;
 using Pathfinding;
 using UnityEngine;
+using Zenject;
 
 public class Unit : MonoBehaviour
 {
+    public event Action<Unit> OnDestroy;
+    
     private Outline[] _outlines;
     private AIPath _aiPath;
     
     private UnitData _unitData;
     private PlayerData _playerData;
     private UnitType _enemyType;
+    private UnitsCounter _unitsCounter;
 
     private UnitType EnemyType => _enemyType;
+
+    [Inject]
+    public void Construct(UnitsCounter unitsCounter)
+    {
+        _unitsCounter = unitsCounter;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -35,20 +46,37 @@ public class Unit : MonoBehaviour
         SetupView(playerData);
     }
 
+    public void DestroyUnit()
+    {
+        Destroy(gameObject);
+        OnDestroy?.Invoke(this);
+    }
+
+    public Transform CheckNewEnemy()
+    {
+        var allUnits = _unitsCounter.AllUnitsOnScene;
+        
+        foreach (var unit in allUnits)
+        {
+            if (_playerData.Type != unit._playerData.Type)
+            {
+                if (EnemyType == unit._unitData.UnitType)
+                {
+                    return unit.transform;
+                }
+            }
+        }
+
+        return FindEnemyTower().transform;
+    }
+
+    public void MoveToEnemy(Transform transform) => 
+        _aiPath.destination = transform.position;
+
     private void MoveToEnemyTower()
     {
         var enemyTower = FindEnemyTower();
         _aiPath.destination = enemyTower.transform.position;
-    }
-
-    public void CheckNewEnemy()
-    {
-        var enemy = FindEnemy();
-
-        if (enemy && enemy != this)
-            MoveToEnemy(enemy.transform);
-        else
-            MoveToEnemyTower();
     }
 
     private Tower FindEnemyTower()
@@ -56,16 +84,6 @@ public class Unit : MonoBehaviour
         var allTowers = FindObjectsOfType<Tower>();
         return allTowers.FirstOrDefault(tower => tower.PlayerType != _playerData.Type);
     }
-
-    private Unit FindEnemy()
-    {
-        var allUnits = FindObjectsOfType<Unit>();
-        var enemy = allUnits.FirstOrDefault(unit => unit.EnemyType == EnemyType);
-        return enemy;
-    }
-
-    private void MoveToEnemy(Transform transform) => 
-        _aiPath.destination = transform.position;
 
     private void SetEnemyType(UnitData unitData)
     {
@@ -80,9 +98,9 @@ public class Unit : MonoBehaviour
     private void SetupView(PlayerData playerData)
     {
         foreach (var outline in _outlines)
+        {
             outline.OutlineColor = playerData.Material.color;
+            outline.OutlineWidth = 10f;
+        }
     }
-
-    public void DestroyUnit() => 
-        Destroy(gameObject);
 }

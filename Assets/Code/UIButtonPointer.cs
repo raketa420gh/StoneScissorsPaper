@@ -17,13 +17,6 @@ public class UIButtonPointer : MonoBehaviour, IUIButtonPointer
     public void Construct(GameFactory factory) =>
         _factory = factory;
 
-    public void Initialize()
-    {
-        _pointer = _factory.CreatePointer(_pointerStartPosition);
-        HidePointer();
-        _icon.sprite = _unitData.Icon;
-    }
-
     public void OnBeginDrag(PointerEventData eventData) =>
         ShowPointer();
 
@@ -47,9 +40,16 @@ public class UIButtonPointer : MonoBehaviour, IUIButtonPointer
         OnPointerDragEnd?.Invoke(_unitData, _pointer, _pointer.transform.position);
     }
 
+    public void Initialize()
+    {
+        _pointer = _factory.CreatePointer(_pointerStartPosition);
+        HidePointer();
+        _icon.sprite = _unitData.Icon;
+    }
+
     public void HidePointer() =>
         _pointer.gameObject.SetActive(false);
 
-    public void ShowPointer() =>
+    private void ShowPointer() =>
         _pointer.gameObject.SetActive(true);
 }

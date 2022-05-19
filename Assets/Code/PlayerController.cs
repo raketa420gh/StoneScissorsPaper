@@ -10,12 +10,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CreationZone _creationZone;
     [SerializeField] private List<UIButtonPointer> _uiButtonPointers = new List<UIButtonPointer>();
     private GameFactory _factory;
+    private UnitsCounter _unitsCounter;
 
     public PlayerData PlayerData => _playerData;
 
     [Inject]
-    public void Construct(GameFactory factory) => 
+    public void Construct(GameFactory factory, UnitsCounter unitsCounter)
+    {
         _factory = factory;
+        _unitsCounter = unitsCounter;
+    }
 
     public void Initialize()
     {
@@ -50,17 +54,21 @@ public class PlayerController : MonoBehaviour
         {
             if (_playerData.Type == PlayerType.Player2)
             {
-                var enemy = _factory.CreateUnit(positionWithOffset, unitData.AssetPath);
-                enemy.transform.rotation = Quaternion.Euler(0, 180, 0);
-                enemy.Initialize(_playerData, unitData);
-                enemy.CheckNewEnemy();
+                var unit = _factory.CreateUnit(positionWithOffset, unitData.AssetPath);
+                unit.transform.rotation = Quaternion.Euler(0, 180, 0);
+                unit.Initialize(_playerData, unitData);
+                _unitsCounter.AddUnit(unit);
+                var enemyTransform = unit.CheckNewEnemy();
+                unit.MoveToEnemy(enemyTransform);
             }
 
             if (_playerData.Type == PlayerType.Player1)
             {
-                var enemy = _factory.CreateUnit(positionWithOffset, unitData.AssetPath);
-                enemy.Initialize(_playerData, unitData);
-                enemy.CheckNewEnemy();
+                var unit = _factory.CreateUnit(positionWithOffset, unitData.AssetPath);
+                unit.Initialize(_playerData, unitData);
+                _unitsCounter.AddUnit(unit);
+                var enemyTransform = unit.CheckNewEnemy();
+                unit.MoveToEnemy(enemyTransform);
             }
         }
     }
