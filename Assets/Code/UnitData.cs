@@ -7,4 +7,5 @@ public class UnitData : ScriptableObject
     public Sprite Icon;
     public string AssetPath;
     public UnitType Type;
+    public UnitType EnemyType;
 }

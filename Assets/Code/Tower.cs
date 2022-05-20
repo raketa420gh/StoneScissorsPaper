@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Tower : Unit
 {
     [SerializeField] private int _armor;
     [SerializeField] private TMP_Text _tmpArmor;

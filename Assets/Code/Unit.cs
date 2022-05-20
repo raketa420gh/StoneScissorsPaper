@@ -14,15 +14,15 @@ public class Unit : MonoBehaviour
     private UnitData _unitData;
     private PlayerData _playerData;
     private AIPath _aiPath;
-    private UnitType _enemyType;
     private Outline[] _outlines;
     private UnitsCounter _unitsCounter;
 
-    public UnitType EnemyType => _enemyType;
+    public UnitType EnemyType => _unitData.EnemyType;
     public UnitType Type => _unitData.Type;
     public PlayerType PlayerType => _playerData.Type;
-    public Transform Target { get; private set; }
     
+    public Unit UnitTarget { get; private set; }
+
 
     [Inject]
     public void Construct(UnitsCounter unitsCounter) => 
@@ -46,9 +46,7 @@ public class Unit : MonoBehaviour
         _outlines = GetComponentsInChildren<Outline>();
         _aiPath = GetComponent<AIPath>();
 
-        SetEnemyType(unitData);
         SetupView(playerData);
-
         InitializeStateMachine();
     }
 
@@ -68,21 +66,20 @@ public class Unit : MonoBehaviour
         OnDestroy?.Invoke(this);
     }
 
-    public void SetTarget(Transform target) => 
-        Target = target;
+    public void SetUnitTarget(Unit unitTarget)
+    {
+        UnitTarget = unitTarget;
+        UnitTarget.OnDestroy += OnDestoyTarget;
+    }
+
+    private void OnDestoyTarget(Unit unitTarget)
+    {
+        UnitTarget = null;
+        StateMachine.ChangeState(FindingTargetState);
+    }
 
     public void MoveTo(Transform target) => 
         _aiPath.destination = target.position;
-
-    private void SetEnemyType(UnitData unitData)
-    {
-        if (unitData.Type == UnitType.Scissors)
-            _enemyType = UnitType.Paper;
-        if (unitData.Type == UnitType.Stone)
-            _enemyType = UnitType.Scissors;
-        if (_unitData.Type == UnitType.Paper)
-            _enemyType = UnitType.Stone;
-    }
 
     private void SetupView(PlayerData playerData)
     {

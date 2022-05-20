@@ -15,4 +15,5 @@ MonoBehaviour:
   Title: Paper
   Icon: {fileID: 21300000, guid: 2b547bdf7fd15024f88692fde4aa23d7, type: 3}
   AssetPath: Prefabs/Paper
-  UnitType: 3
+  Type: 3
+  EnemyType: 1

@@ -6,10 +6,8 @@ public class GameFactory : IGameFactory
     private AssetProvider _assetProvider;
 
     [Inject]
-    public void Construct(AssetProvider assetProvider)
-    {
+    public void Construct(AssetProvider assetProvider) =>
         _assetProvider = assetProvider;
-    }
 
     public Unit CreateUnit(Vector3 position, string path = AssetPath.Debug, Transform parent = null)
     {
@@ -18,7 +16,7 @@ public class GameFactory : IGameFactory
         var unit = obj.GetComponent<Unit>();
         return unit ? unit : null;
     }
-    
+
     public Pointer CreatePointer(Vector3 position, string path = AssetPath.Pointer, Transform parent = null)
     {
         GameObject obj = _assetProvider.Instantiate(path, position, Quaternion.identity);

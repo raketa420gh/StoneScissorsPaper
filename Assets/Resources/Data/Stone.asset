@@ -15,4 +15,5 @@ MonoBehaviour:
   Title: Stone
   Icon: {fileID: 21300000, guid: 5f291f42fa819f14f8500cb892ef6306, type: 3}
   AssetPath: Prefabs/Stone
-  UnitType: 1
+  Type: 1
+  EnemyType: 2

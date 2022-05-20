@@ -15,4 +15,5 @@ MonoBehaviour:
   Title: Scissors
   Icon: {fileID: 21300000, guid: ab1062b13e2014543b44cd0bef29ff5b, type: 3}
   AssetPath: Prefabs/Scissors
-  UnitType: 2
+  Type: 2
+  EnemyType: 3

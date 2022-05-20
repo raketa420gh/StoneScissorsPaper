@@ -1,5 +1,4 @@
 using System.Linq;
-using UnityEngine;
 
 public class FindingTargetState : UnitState
 {
@@ -15,22 +14,21 @@ public class FindingTargetState : UnitState
     public override void Enter()
     {
         base.Enter();
-        _ownerUnit.SetTarget(CheckNewEnemyTarget());
+        _ownerUnit.SetUnitTarget(CheckNewEnemyTarget());;
         stateMachine.ChangeState(_ownerUnit.ChasingState);
     }
 
-    private Transform CheckNewEnemyTarget()
+    private Unit CheckNewEnemyTarget()
     {
         var allUnits = _unitsCounter.AllUnitsOnScene;
 
         foreach (var unit in allUnits.Where(unit => _ownerUnit.PlayerType != unit.PlayerType)
                      .Where(unit => _ownerUnit.EnemyType == unit.Type))
-            return unit.transform;
+            return unit;
 
-        return FindEnemyTower().transform;
+        return FindEnemyTower();
     }
 
     private Tower FindEnemyTower() => 
-        _unitsCounter.AllTowers.FirstOrDefault(tower => 
-            tower.PlayerType != _ownerUnit.PlayerType);
+        _unitsCounter.AllTowers.FirstOrDefault(tower => tower.PlayerType != _ownerUnit.PlayerType);
 }

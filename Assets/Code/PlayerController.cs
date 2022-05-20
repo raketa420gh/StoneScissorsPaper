@@ -61,9 +61,7 @@ public class PlayerController : MonoBehaviour
             }
 
             if (_playerData.Type == PlayerType.Player1)
-            {
-                var unit = CreateUnit(unitData, positionWithOffset);
-            }
+                CreateUnit(unitData, positionWithOffset);
         }
     }
 

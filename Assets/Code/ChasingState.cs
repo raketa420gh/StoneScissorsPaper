@@ -1,3 +1,6 @@
+using System;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class ChasingState : UnitState
@@ -12,8 +15,18 @@ public class ChasingState : UnitState
     public override void Enter()
     {
         base.Enter();
-        var target = _ownerUnit.Target;
-        MoveToTarget(target);
+        UpdateChasing();
+    }
+
+    private async Task UpdateChasing(float period = 1f, float startDelay = 0f)
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(startDelay));
+
+        while (true)
+        {
+            MoveToTarget(_ownerUnit.UnitTarget.transform);
+            await UniTask.Delay(TimeSpan.FromSeconds(period));
+        }
     }
 
     private void MoveToTarget(Transform target) => 
