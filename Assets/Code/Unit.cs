@@ -15,6 +15,7 @@ public class Unit : MonoBehaviour
     private PlayerData _playerData;
     private AIPath _aiPath;
     private Outline[] _outlines;
+    private GameFactory _factory;
     private UnitsCounter _unitsCounter;
 
     public UnitType EnemyType => _unitData.EnemyType;
@@ -25,8 +26,11 @@ public class Unit : MonoBehaviour
 
 
     [Inject]
-    public void Construct(UnitsCounter unitsCounter) => 
+    public void Construct(UnitsCounter unitsCounter, GameFactory factory)
+    {
         _unitsCounter = unitsCounter;
+        _factory = factory;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -42,7 +46,7 @@ public class Unit : MonoBehaviour
     {
         _playerData = playerData;
         _unitData = unitData;
-
+        
         _outlines = GetComponentsInChildren<Outline>();
         _aiPath = GetComponent<AIPath>();
 
@@ -62,6 +66,10 @@ public class Unit : MonoBehaviour
 
     public void DestroyUnit()
     {
+        var vfx = _factory.CreateVFX(transform.position);
+        vfx.startColor = _playerData.Material.color;
+        vfx.Play();
+        Destroy(vfx, 1f);
         Destroy(gameObject);
         OnDestroy?.Invoke(this);
     }

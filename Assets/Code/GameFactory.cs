@@ -24,4 +24,12 @@ public class GameFactory : IGameFactory
         var pointer = obj.GetComponent<Pointer>();
         return pointer;
     }
+
+    public ParticleSystem CreateVFX(Vector3 position, string path = AssetPath.UnitFX, Transform parent = null)
+    {
+        GameObject obj = _assetProvider.Instantiate(path, position, Quaternion.identity);
+        obj.transform.SetParent(parent);
+        var particleSystem = obj.GetComponentInChildren<ParticleSystem>();
+        return particleSystem;
+    }
 }
