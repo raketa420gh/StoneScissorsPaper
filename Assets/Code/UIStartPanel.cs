@@ -2,23 +2,25 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIStartPanel : MonoBehaviour
+public class UIStartPanel : MonoBehaviour, IUIPanel
 {
     public event Action OnStartButtonClicked;
-    
     [SerializeField] private Button _startButton;
 
     public void Initialize()
     {
-        gameObject.SetActive(true);
+        Show();
         
         _startButton.onClick.AddListener((() =>
         {
-            HidePanel();
+            Hide();
             OnStartButtonClicked?.Invoke();
         }));
     }
+    
+    public void Show() => 
+        gameObject.SetActive(true);
 
-    private void HidePanel() => 
+    public void Hide() => 
         gameObject.SetActive(false);
 }

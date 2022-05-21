@@ -51,5 +51,6 @@ public class Tower : Unit
             ResetArmor();
 
         UpdateArmorView();
+        ActivateBounceAnimation();
     }
 }

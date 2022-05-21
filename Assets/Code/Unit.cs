@@ -10,11 +10,12 @@ public class Unit : MonoBehaviour
     public StateMachine StateMachine;
     public FindingTargetState FindingTargetState;
     public ChasingState ChasingState;
-    
+
+    [SerializeField] private BounceScaleAnimation _bounceScaleAnimation;
     private UnitData _unitData;
     private PlayerData _playerData;
     private AIPath _aiPath;
-    private Outline[] _outlines;
+    private OutlineMesh[] _outlines;
     private GameFactory _factory;
     private UnitsCounter _unitsCounter;
 
@@ -47,22 +48,15 @@ public class Unit : MonoBehaviour
         _playerData = playerData;
         _unitData = unitData;
         
-        _outlines = GetComponentsInChildren<Outline>();
+        _outlines = GetComponentsInChildren<OutlineMesh>();
         _aiPath = GetComponent<AIPath>();
 
         SetupView(playerData);
         InitializeStateMachine();
     }
 
-    private void InitializeStateMachine()
-    {
-        StateMachine = new StateMachine();
-
-        FindingTargetState = new FindingTargetState(this, StateMachine, _unitsCounter);
-        ChasingState = new ChasingState(this, StateMachine);
-
-        StateMachine.ChangeState(FindingTargetState);
-    }
+    public void ActivateBounceAnimation() => 
+        _bounceScaleAnimation.Activate();
 
     public void DestroyUnit()
     {
@@ -78,6 +72,16 @@ public class Unit : MonoBehaviour
     {
         UnitTarget = unitTarget;
         UnitTarget.OnDestroy += OnDestoyTarget;
+    }
+
+    private void InitializeStateMachine()
+    {
+        StateMachine = new StateMachine();
+
+        FindingTargetState = new FindingTargetState(this, StateMachine, _unitsCounter);
+        ChasingState = new ChasingState(this, StateMachine);
+
+        StateMachine.ChangeState(FindingTargetState);
     }
 
     private void OnDestoyTarget(Unit unitTarget)

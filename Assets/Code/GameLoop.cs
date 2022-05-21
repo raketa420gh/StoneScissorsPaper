@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameLoop : MonoBehaviour
@@ -8,6 +9,7 @@ public class GameLoop : MonoBehaviour
     [SerializeField] private float _turnTimeInSeconds = 5f;
     [SerializeField] private UIInfoPanel _uiInfoPanel;
     [SerializeField] private UIStartPanel _uiStartPanel;
+    [SerializeField] private UIFinishPanel _uiFinishPanel;
 
     private float _currentTimer;
     private int _activePlayerNumber = 0;
@@ -17,8 +19,10 @@ public class GameLoop : MonoBehaviour
         _playerController1.Initialize();
         _playerController2.Initialize();
         _uiStartPanel.Initialize();
-
+        _uiFinishPanel.Initialize();
+        
         _uiStartPanel.OnStartButtonClicked += StartGame;
+        _uiFinishPanel.OnRestartButtonClicked += RestartGame;
     }
 
     private void Update()
@@ -36,6 +40,9 @@ public class GameLoop : MonoBehaviour
         ActivatePlayer(GetRandomPlayerIndex());
         ResetTimer();
     }
+
+    private void RestartGame() => 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     private void ResetTimer()
     {

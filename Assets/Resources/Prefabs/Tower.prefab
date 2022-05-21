@@ -147,12 +147,13 @@ GameObject:
   - component: {fileID: 6002955624896060373}
   - component: {fileID: 6002955624896060378}
   - component: {fileID: 6002955624896060374}
+  - component: {fileID: 8258464515338644040}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6002955624896060375
 Transform:
@@ -196,7 +197,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 45d1cc81b089ebc4fa7a7aa5e533c7c5, type: 2}
+  - {fileID: 2100000, guid: 1b82fdb2e69b48d479b5ecf9b393dc4d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -243,8 +244,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521ede9da2d394d4b87b2eca55316e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bounceScaleAnimation: {fileID: 8258464515338644040}
   _armor: 10
   _tmpArmor: {fileID: 534473608577592881}
+--- !u!114 &8258464515338644040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6002955624896060379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3888b9635a9614f94f864420353700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startScale: {x: 1.5, y: 1.5, z: 1.5}
+  endScale: {x: 2, y: 2, z: 2}
+  startDelay: 0
+  toEndMoveTime: 0.25
+  toStartMoveTime: 0.25
+  toEndEase: 1
+  toStartEase: 1
 --- !u!1 &6506442478177781306
 GameObject:
   m_ObjectHideFlags: 0
