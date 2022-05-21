@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 159581592484828787}
   - component: {fileID: 3343277321415315842}
   - component: {fileID: 3126854858467284914}
+  - component: {fileID: 4093657653059644926}
   m_Layer: 0
   m_Name: Scissors
   m_TagString: Untagged
@@ -98,7 +99,7 @@ MonoBehaviour:
   radius: 0.25
   height: 0.5
   canMove: 1
-  maxSpeed: 1.5
+  maxSpeed: 1.25
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -117,9 +118,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.6
+  slowdownDistance: 0.3
   pickNextWaypointDist: 2
-  endReachedDistance: 0.2
+  endReachedDistance: 0.25
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -136,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f29e30105ef544080b89d09e41a60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bounceScaleAnimation: {fileID: 4093657653059644926}
 --- !u!95 &159581592484828787
 Animator:
   serializedVersion: 3
@@ -180,6 +182,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.41561377, y: 0.22465476, z: 1}
   m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!114 &4093657653059644926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312019058853450794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3888b9635a9614f94f864420353700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startScale: {x: 1, y: 1, z: 1}
+  endScale: {x: 1.5, y: 1.5, z: 1.5}
+  startDelay: 0
+  toEndMoveTime: 0.25
+  toStartMoveTime: 0.25
+  toEndEase: 1
+  toStartEase: 1
 --- !u!1001 &312019058714331715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -201,15 +222,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4698741945106030, guid: 07f9048ddafe046b893ea5846d9de1f4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4698741945106030, guid: 07f9048ddafe046b893ea5846d9de1f4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4698741945106030, guid: 07f9048ddafe046b893ea5846d9de1f4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4698741945106030, guid: 07f9048ddafe046b893ea5846d9de1f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -266,49 +287,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4698741945106030, guid: 07f9048ddafe046b893ea5846d9de1f4, type: 3}
   m_PrefabInstance: {fileID: 312019058714331715}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &311300388425320557 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1536720161571374, guid: 07f9048ddafe046b893ea5846d9de1f4, type: 3}
-  m_PrefabInstance: {fileID: 312019058714331715}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &312819737461918235 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1082239818907736, guid: 07f9048ddafe046b893ea5846d9de1f4, type: 3}
-  m_PrefabInstance: {fileID: 312019058714331715}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2842567169551750521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311300388425320557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 1, b: 0.07667947, a: 1}
-  outlineWidth: 10
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
---- !u!114 &3040789800625853364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312819737461918235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 1, b: 0.078431375, a: 1}
-  outlineWidth: 10
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []

@@ -7,6 +7,7 @@ public class Tower : Unit
     [SerializeField] private TMP_Text _tmpArmor;
     private int _currentArmor;
     private MeshRenderer _meshRenderer;
+    private PlayerData _playerData;
     private PlayerType _playerType;
 
     public PlayerType PlayerType => _playerType;
@@ -14,6 +15,7 @@ public class Tower : Unit
     public void Initialize(PlayerData playerData)
     {
         _meshRenderer = GetComponentInChildren<MeshRenderer>();
+        _playerData = playerData;
         _playerType = playerData.Type;
         SetupView(playerData);
         ResetArmor();
@@ -31,24 +33,24 @@ public class Tower : Unit
             }
     }
 
-    private void ResetArmor()
-    {
-        _currentArmor = _armor;
-        UpdateArmorView();
-    }
-
     private void UpdateArmorView() =>
         _tmpArmor.text = _currentArmor.ToString();
 
     private void SetupView(PlayerData playerData) =>
         _meshRenderer.material.color = playerData.Material.color;
 
+    private void ResetArmor()
+    {
+        _currentArmor = _armor;
+        UpdateArmorView();
+    }
+
     private void ChangeArmor(int amount)
     {
         _currentArmor += amount;
 
         if (_currentArmor <= 0)
-            ResetArmor();
+            DestroyUnit();
 
         UpdateArmorView();
         ActivateBounceAnimation();

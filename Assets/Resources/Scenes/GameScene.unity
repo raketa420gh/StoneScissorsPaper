@@ -504,14 +504,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15294118, g: 0.18823531, b: 0.9215687, a: 1}
+  m_Color: {r: 0.15294118, g: 0.18823531, b: 0.9215687, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 5c4bdad1bb7469f4ab2dd383979f903e, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2186,7 +2186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAYIeyxxR3TUwIAABAFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtVE1zmzAQ/SsendsOMLbr6a3FjtODE0/cTi5cBFqMxkJi9BF/ZPzfuxJgiNOT8du3u2/fLrwTLk0DhVV6rTnbKAbkx4T4Z/JlMgQf4UT3Su74BXrOK2e28iQaOC/UcoV47NOMqsFqXvyUe+HJEYJO8lLpesX2kCpjDcIlFQYwpJX12RKh9wk5dQnn7vfifydXfCpAWtD/YX1LZh+IThaC1g0wL3jgx31CPAs0iaN0DC+7UEJw0+kg9tyEOVPaGIdTIIFxinMFBQn+rYDvKxv6z8bpz2VpwHb6ND0vuUaD2rrkl2pdq6k5tMreqHBwk94W3XyKzqchXGpVP/Z948h3sBUvDi/0XFBjR6aO4eUgPA72HKk40FzAawXySa21cpJh0GrnU52BZDkqdZssraA4DLxW6x3oms8LioftXMPsp1TwOg/WxS2wEyr4/d1bCRo38xsFh7MwXSVEvYi/Bv7Q/fh+usAD18ZiqGsovbpcOe2pZBU888M4myotIcCd5gYkFfa8xTL2foF3sVHbu8gD9W9K17yL9S/AXUqAB34U3YW26nhblqnUcQOmenZWcAmDaB94Qp9SJWV7X2NP+rSd0yUtRml7x9nH0yJRHkeLBZ0WMUuSZLr4GuU5YyxfJPM8mc3mEQm3xyXOScW2FdrZg1uTQ3GJd9Z/QCZrTZtw60zT45pfajWynMtS7QoNIJ/bCjfhoLEJvpVsxTgatANruQz7Ju8ZEao4AMtuhbIw6epkNc2GKhlp+JuyHslIGj4bGfHw7ZS3Gt44HH3zvtiVXP8BUEsDBBQAAAgIAAAYIezR8DskbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSSQZKhgYVFokmyYYqRkZGJha5BUlJKSkqShZFZkpGpqZmBUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAYIeyxxR3TUwIAABAFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAYIezR8DskbQAAAHgAAAAJACQAAAAAAAAAAAAAAKACAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAWAMAAAAA
+    dataString: UEsDBBQAAAgIAAAYIeyZj4+aUQIAABQFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtVE2P2jAQ/SvI53aVRIBQb21g2R5Y0NJqL7k48SSxcOzIH3yt+O+1nU+gp0Rv3sy8eTPJF6Jc1ZBpIdeSko0ggH5MkHtH3yZD8A3OuBB8T6/QcT4p0aUjYc/5wJoKi4cuTYkKtKTZT14wRw4saDjNhaxWpIBYKK0snGOmwIak0C6bW+hrgs5twqV9Xt1zcrNvGXAN8j+sl2h2RzQ8Y7iqgTjBAz/sEsKZp3E7SstwsjPBGFWtDqQvtZ8zxrUydgpLIBTbubyC6MV1LIEWpfYKZuMC2zxXMOASX5ZUWpOa2uiXaJyrsDo06o6YGejlN2U3T9H51IdzKaq3rnMYuKF0SbPDB75kWOmRsWN4OYgPvUUnzA44ZfBZAn8XaykMJzaopXGpRkG0HJXqZ4tLyA4Dr9H6AJr6eUnhsKGbn/0cM1ql3qSwAfZMeM+nzjSQdju/rWB/GqqtZFEn4q+CP7gY31AbeKVSaRtqG3KnLhVGOipaec/cMEbHQnLwcKu5Bo6ZvuxsGX23wufYqO1D5BW7r6Vt3sa6j+AhxcMDPwgeQjtx6pelSnHagCq3RjPKYRDtAu/Wp1hw3tzX2JMubW9kjrNRWmEouT8tFKRhsFjgaRaSKIqmi+9BmhJC0kU0T6PZbB4gf3uU2zkx2zVCW3vs1vhQnNs7634ik7XEtb91IvFpTa+VGFlOeS72mQTg26ZCLxykbWK/TLIi1Bq0B60p9/tGXwliIjsASfpCiZ90ddYSJ0OVBNX0KLRDEhT7X0eCHNyf8k7CkcLJNe+K3dDtH1BLAwQUAAAICAAAGCHs0fA7JG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0kkGSoYGFRaJJsmGKkZGRiYWuQVJSSkpKkoWRWZKRqamZgVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAGCHsmY+PmlECAAAUBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAGCHs0fA7JG0AAAB4AAAACQAkAAAAAAAAAAAAAACeAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAFYDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -2351,6 +2351,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8793136678920436594, guid: 959330dbccb9318448ea2ea8ccc0f260, type: 3}
   m_PrefabInstance: {fileID: 809362958}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &826501698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6660862181681950352, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
+  m_PrefabInstance: {fileID: 1469234381}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &850271094 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -2496234573513917985, guid: 959330dbccb9318448ea2ea8ccc0f260, type: 3}
@@ -2419,7 +2424,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: fc4dec7779e09234bb28a46f901a8dd7, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3197,14 +3202,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.990566, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: ded19d0d721dc40429acf3d21af699e6, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3350,6 +3355,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 22179694}
     m_Modifications:
+    - target: {fileID: -6509751052160770010, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
+      propertyPath: _zoneView
+      value: 
+      objectReference: {fileID: 826501698}
     - target: {fileID: 4356793399291648860, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
       propertyPath: m_Name
       value: CreationZone2
@@ -3398,32 +3407,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4356793399291648863, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
-      propertyPath: m_Size.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4356793399291648863, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
-      propertyPath: m_Center.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453215371611671270, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453215371611671270, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
+    - target: {fileID: 6912540952445792738, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453215371611671270, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453215371611671270, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453215371611671270, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4922,22 +4907,6 @@ PrefabInstance:
     - target: {fileID: 4356793399291648862, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4356793399291648863, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
-      propertyPath: m_Size.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4356793399291648863, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
-      propertyPath: m_Center.z
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453215371611671270, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8453215371611671270, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 259e1824a695afb4f96384bc68a1bbe4, type: 3}

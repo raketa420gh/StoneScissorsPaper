@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
     {
         foreach (var uiButtonPointer in _uiButtonPointers)
             uiButtonPointer.HidePointer();
+        
+        _creationZone.Hide();
     }
 
     private void TryToCreateUnit(UnitData unitData, Pointer pointer, Vector3 position)
@@ -68,10 +70,14 @@ public class PlayerController : MonoBehaviour
     {
         var unit = _factory.CreateUnit(positionWithOffset, unitData.AssetPath);
         unit.Initialize(_playerData, unitData);
+        unit.ActivateBounceAnimation();
         _unitsCounter.AddUnit(unit);
         return unit;
     }
 
-    private void OnPointerDragEnd(UnitData unitData, Pointer pointer, Vector3 position) => 
+    private void OnPointerDragEnd(UnitData unitData, Pointer pointer, Vector3 position)
+    {
         TryToCreateUnit(unitData, pointer, position);
+        _creationZone.Hide();
+    }
 }

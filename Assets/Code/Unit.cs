@@ -15,7 +15,7 @@ public class Unit : MonoBehaviour
     private UnitData _unitData;
     private PlayerData _playerData;
     private AIPath _aiPath;
-    private OutlineMesh[] _outlines;
+    private MeshRenderer[] _meshRenderers;
     private GameFactory _factory;
     private UnitsCounter _unitsCounter;
 
@@ -48,7 +48,7 @@ public class Unit : MonoBehaviour
         _playerData = playerData;
         _unitData = unitData;
         
-        _outlines = GetComponentsInChildren<OutlineMesh>();
+        _meshRenderers = GetComponentsInChildren<MeshRenderer>();
         _aiPath = GetComponent<AIPath>();
 
         SetupView(playerData);
@@ -63,7 +63,7 @@ public class Unit : MonoBehaviour
         var vfx = _factory.CreateVFX(transform.position);
         vfx.startColor = _playerData.Material.color;
         vfx.Play();
-        Destroy(vfx, 1f);
+        Destroy(vfx.gameObject, 1f);
         Destroy(gameObject);
         OnDestroy?.Invoke(this);
     }
@@ -95,10 +95,9 @@ public class Unit : MonoBehaviour
 
     private void SetupView(PlayerData playerData)
     {
-        foreach (var outline in _outlines)
+        foreach (var meshRenderer in _meshRenderers)
         {
-            outline.OutlineColor = playerData.Material.color;
-            outline.OutlineWidth = 10f;
+            meshRenderer.material.color = playerData.Material.color;
         }
     }
 }

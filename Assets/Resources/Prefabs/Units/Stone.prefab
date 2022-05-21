@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2129313369439121093}
   - component: {fileID: 8248009301558090875}
   - component: {fileID: 4006188124781605354}
+  - component: {fileID: 7903694259405159756}
   m_Layer: 0
   m_Name: Stone
   m_TagString: Untagged
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f29e30105ef544080b89d09e41a60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bounceScaleAnimation: {fileID: 7903694259405159756}
 --- !u!54 &3784255693928708363
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -110,7 +112,7 @@ MonoBehaviour:
   radius: 0.25
   height: 0.5
   canMove: 1
-  maxSpeed: 1.5
+  maxSpeed: 1.25
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -129,9 +131,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.6
+  slowdownDistance: 0.3
   pickNextWaypointDist: 2
-  endReachedDistance: 0.2
+  endReachedDistance: 0.25
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -180,6 +182,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.51425695, y: 0.3970219, z: 0.5559216}
   m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!114 &7903694259405159756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312019058853450794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3888b9635a9614f94f864420353700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startScale: {x: 1, y: 1, z: 1}
+  endScale: {x: 1.5, y: 1.5, z: 1.5}
+  startDelay: 0
+  toEndMoveTime: 0.25
+  toStartMoveTime: 0.25
+  toEndEase: 1
+  toStartEase: 1
 --- !u!1 &2016323534969819094
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +212,6 @@ GameObject:
   - component: {fileID: 2105669687488906701}
   - component: {fileID: 7634389196556136977}
   - component: {fileID: 5915152602884479889}
-  - component: {fileID: 7557653508203527063}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -208,7 +228,7 @@ Transform:
   m_GameObject: {fileID: 2016323534969819094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.25, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.35, z: 0.5}
+  m_LocalScale: {x: 0.75, y: 0.5, z: 0.75}
   m_Children: []
   m_Father: {fileID: 312019058853450792}
   m_RootOrder: 0
@@ -262,21 +282,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7557653508203527063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016323534969819094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0.061502814, g: 1, b: 0, a: 1}
-  outlineWidth: 5
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
