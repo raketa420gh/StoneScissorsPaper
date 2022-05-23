@@ -26,7 +26,7 @@ public abstract class UnitBase : MonoBehaviour
         _bounceScaleAnimation = GetComponent<BounceScaleAnimation>();
     }
     
-    public void DestroyUnit()
+    public virtual void DestroyUnit()
     {
         var vfx = _factory.CreateVFX(transform.position);
         vfx.startColor = _playerData.Material.color;

@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -45,5 +44,21 @@ public class Tower : UnitBase
 
         UpdateArmorView();
         ActivateBounceAnimation();
+    }
+
+    public override void DestroyUnit()
+    {
+        //base.DestroyUnit();
+
+        var rigidbodies = GetComponentsInChildren<Rigidbody>();
+        var randomOffset = Random.Range(-0.5f, 0.5f);
+        var randomVector = new Vector3(0, 1 + randomOffset, 0);
+        
+        foreach (var rb in rigidbodies)
+        {
+            rb.isKinematic = false;
+            rb.AddForce(randomVector * 25, ForceMode.Impulse);
+        }
+        
     }
 }
