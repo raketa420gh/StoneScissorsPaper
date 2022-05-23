@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class UnitsCounter : MonoBehaviour
 {
-    private readonly List<Unit> _allUnitsOnScene = new List<Unit>();
+    private readonly List<UnitBase> _allUnitsOnScene = new List<UnitBase>();
     private readonly List<Tower> _allTowersOnScene = new List<Tower>();
 
-    public List<Unit> AllUnitsOnScene => _allUnitsOnScene;
+    public List<UnitBase> AllUnitsOnScene => _allUnitsOnScene;
     public List<Tower> AllTowers => _allTowersOnScene;
 
-    public void AddUnit(Unit unit)
+    public void AddUnit(UnitBase unit)
     {
         _allUnitsOnScene.Add(unit);
         unit.OnDestroy += OnUnitDestroy;
@@ -18,9 +18,9 @@ public class UnitsCounter : MonoBehaviour
     public void AddTower(Tower tower) => 
         _allTowersOnScene.Add(tower);
 
-    private void RemoveUnit(Unit unit) => 
-        _allUnitsOnScene.Remove(unit);
+    private void RemoveUnit(UnitBase unitBase) => 
+        _allUnitsOnScene.Remove(unitBase);
 
-    private void OnUnitDestroy(Unit unit) => 
-        RemoveUnit(unit);
+    private void OnUnitDestroy(UnitBase unitBase) => 
+        RemoveUnit(unitBase);
 }

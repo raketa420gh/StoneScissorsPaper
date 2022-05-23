@@ -1,32 +1,26 @@
+using System;
 using TMPro;
 using UnityEngine;
 
-public class Tower : Unit
+public class Tower : UnitBase
 {
     [SerializeField] private int _armor;
     [SerializeField] private TMP_Text _tmpArmor;
     private int _currentArmor;
-    private MeshRenderer _meshRenderer;
-    private PlayerData _playerData;
-    private PlayerType _playerType;
 
-    public PlayerType PlayerType => _playerType;
-
-    public void Initialize(PlayerData playerData)
+    public override void Initialize(PlayerData playerData, UnitData unitData = null)
     {
-        _meshRenderer = GetComponentInChildren<MeshRenderer>();
-        _playerData = playerData;
-        _playerType = playerData.Type;
-        SetupView(playerData);
+        base.Initialize(playerData, unitData);
         ResetArmor();
+        SetupView(playerData);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        var unit = other.GetComponent<Unit>();
+        var unit = collision.gameObject.GetComponent<Unit>();
 
         if (unit)
-            if (unit.PlayerType != _playerType)
+            if (unit.PlayerType != PlayerType)
             {
                 unit.DestroyUnit();
                 ChangeArmor(-1);
@@ -35,9 +29,6 @@ public class Tower : Unit
 
     private void UpdateArmorView() =>
         _tmpArmor.text = _currentArmor.ToString();
-
-    private void SetupView(PlayerData playerData) =>
-        _meshRenderer.material.color = playerData.Material.color;
 
     private void ResetArmor()
     {

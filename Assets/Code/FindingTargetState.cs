@@ -18,12 +18,12 @@ public class FindingTargetState : UnitState
         stateMachine.ChangeState(_ownerUnit.ChasingState);
     }
 
-    private Unit CheckNewEnemyTarget()
+    private UnitBase CheckNewEnemyTarget()
     {
         var allUnits = _unitsCounter.AllUnitsOnScene;
 
         foreach (var unit in allUnits.Where(unit => _ownerUnit.PlayerType != unit.PlayerType)
-                     .Where(unit => _ownerUnit.EnemyType == unit.Type))
+                     .Where(unit => _ownerUnit.EnemyType == unit.GetComponent<Unit>()?.Type))
             return unit;
 
         return FindEnemyTower();

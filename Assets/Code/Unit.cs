@@ -1,103 +1,74 @@
-using System;
 using Pathfinding;
 using UnityEngine;
 using Zenject;
 
-public class Unit : MonoBehaviour
+public class Unit : UnitBase
 {
-    public event Action<Unit> OnDestroy;
-
     public StateMachine StateMachine;
     public FindingTargetState FindingTargetState;
     public ChasingState ChasingState;
 
-    [SerializeField] private BounceScaleAnimation _bounceScaleAnimation;
-    private UnitData _unitData;
-    private PlayerData _playerData;
-    private AIPath _aiPath;
-    private MeshRenderer[] _meshRenderers;
-    private GameFactory _factory;
     private UnitsCounter _unitsCounter;
+    private UnitData _unitData;
+    private AIPath _aiPath;
 
     public UnitType EnemyType => _unitData.EnemyType;
     public UnitType Type => _unitData.Type;
-    public PlayerType PlayerType => _playerData.Type;
-    
-    public Unit UnitTarget { get; private set; }
-
+    public UnitBase UnitTarget { get; private set; }
 
     [Inject]
-    public void Construct(UnitsCounter unitsCounter, GameFactory factory)
+    public void Construct(UnitsCounter unitsCounter)
     {
         _unitsCounter = unitsCounter;
-        _factory = factory;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        var unit = collision.gameObject.GetComponent<Unit>();
+        var unitBase = collision.gameObject.GetComponent<UnitBase>();
 
-        if (unit)
-            if (_playerData.Type != unit._playerData.Type)
-                if (EnemyType == unit._unitData.Type)
-                    unit.DestroyUnit();
+        if (!unitBase)
+            return;
+        if (PlayerType == unitBase.PlayerType)
+            return;
+        
+        var unit = unitBase.GetComponent<Unit>();
+        if (!unit)
+            return;
+
+        if (EnemyType == unit._unitData.Type)
+            unitBase.DestroyUnit();
     }
 
-    public void Initialize(PlayerData playerData, UnitData unitData)
+    public override void Initialize(PlayerData playerData, UnitData unitData)
     {
-        _playerData = playerData;
+        base.Initialize(playerData, unitData);
         _unitData = unitData;
-        
-        _meshRenderers = GetComponentsInChildren<MeshRenderer>();
         _aiPath = GetComponent<AIPath>();
 
-        SetupView(playerData);
         InitializeStateMachine();
+        SetupView(playerData);
     }
 
-    public void ActivateBounceAnimation() => 
-        _bounceScaleAnimation.Activate();
-
-    public void DestroyUnit()
-    {
-        var vfx = _factory.CreateVFX(transform.position);
-        vfx.startColor = _playerData.Material.color;
-        vfx.Play();
-        Destroy(vfx.gameObject, 1f);
-        Destroy(gameObject);
-        OnDestroy?.Invoke(this);
-    }
-
-    public void SetUnitTarget(Unit unitTarget)
+    public void SetUnitTarget(UnitBase unitTarget)
     {
         UnitTarget = unitTarget;
-        UnitTarget.OnDestroy += OnDestoyTarget;
+        UnitTarget.OnDestroy += OnDestroyTarget;
     }
 
     private void InitializeStateMachine()
     {
         StateMachine = new StateMachine();
-
         FindingTargetState = new FindingTargetState(this, StateMachine, _unitsCounter);
         ChasingState = new ChasingState(this, StateMachine);
-
         StateMachine.ChangeState(FindingTargetState);
     }
 
-    private void OnDestoyTarget(Unit unitTarget)
+    private void OnDestroyTarget(UnitBase unitTarget)
     {
         UnitTarget = null;
         StateMachine.ChangeState(FindingTargetState);
     }
 
-    public void MoveTo(Transform target) => 
+    public void MoveTo(Transform target) =>
         _aiPath.destination = target.position;
-
-    private void SetupView(PlayerData playerData)
-    {
-        foreach (var meshRenderer in _meshRenderers)
-        {
-            meshRenderer.material.color = playerData.Material.color;
-        }
-    }
 }
