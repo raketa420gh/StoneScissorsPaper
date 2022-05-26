@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -17,8 +16,8 @@ public class GameLoop : MonoBehaviour
 
     private void Awake()
     {
-        _playerController1.OnLose += OnLose1;
-        _playerController2.OnLose += OnLose2;
+        _playerController1.OnLose += OnWinPlayer2;
+        _playerController2.OnLose += OnWinPlayer1;
         _uiStartPanel.OnStartButtonClicked += StartGame;
         _uiFinishPanel.OnRestartButtonClicked += RestartGame;
     }
@@ -29,18 +28,6 @@ public class GameLoop : MonoBehaviour
         _playerController2.Initialize();
         _uiStartPanel.Initialize();
         _uiFinishPanel.Initialize();
-    }
-
-    private void OnLose1()
-    {
-        _uiFinishPanel.Show();
-        _uiFinishPanel.SetWinTextColor(_playerController2.PlayerData.Material.color);
-    }
-
-    private void OnLose2()
-    {
-        _uiFinishPanel.Show();
-        _uiFinishPanel.SetWinTextColor(_playerController1.PlayerData.Material.color);
     }
 
     private void Update()
@@ -111,5 +98,22 @@ public class GameLoop : MonoBehaviour
             2 => 2,
             _ => 0
         };
+    }
+
+    private void HandleWin()
+    {
+        _uiFinishPanel.Show();
+    }
+
+    private void OnWinPlayer1()
+    {
+        HandleWin();
+        _uiFinishPanel.SetWinTextColor(_playerController1.PlayerData.Material.color);
+    }
+
+    private void OnWinPlayer2()
+    {
+        HandleWin();
+        _uiFinishPanel.SetWinTextColor(_playerController2.PlayerData.Material.color);
     }
 }

@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
         }
 
         _tower.OnDestroy += OnDestroyTower;
+        _tower.OnExplode += OnExplodeTower;
 
         _creationZone.Initialize(_playerData);
         _unitsCounter.AddTower(_tower);
@@ -82,6 +83,9 @@ public class PlayerController : MonoBehaviour
         return unit;
     }
 
+    private void OnExplodeTower() => 
+        _soundPlayer.CreateSfxTowerExplode(_tower.transform.position);
+
     private void OnPointerDragEnd(UnitData unitData, Pointer pointer, Vector3 position)
     {
         TryToCreateUnit(unitData, pointer, position);
@@ -89,6 +93,9 @@ public class PlayerController : MonoBehaviour
         _creationZone.Hide();
     }
 
-    private void OnDestroyTower(UnitBase unitBase) =>
+    private void OnDestroyTower(UnitBase unitBase)
+    {
+        _soundPlayer.CreateSfxWin(gameObject.transform.position);
         OnLose?.Invoke();
+    }
 }

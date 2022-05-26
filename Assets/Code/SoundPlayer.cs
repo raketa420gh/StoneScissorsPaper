@@ -15,10 +15,24 @@ public class SoundPlayer : MonoBehaviour
         audioSource.PlayOneShot(audioSource.clip);
         Destroy(audioSource.gameObject, audioSource.clip.length);
     }
+    
+    public void CreateSfxWin(Vector3 position)
+    {
+        var audioSource = _factory.CreateSFX(position, AssetPath.SfxWin);
+        audioSource.PlayOneShot(audioSource.clip);
+        Destroy(audioSource.gameObject, audioSource.clip.length);
+    }
 
     public void CreateSfxUnitDeath(Vector3 position)
     {
         var audioSource = _factory.CreateSFX(position, AssetPath.SfxUnitDeath);
+        audioSource.PlayOneShot(audioSource.clip);
+        Destroy(audioSource.gameObject, audioSource.clip.length);
+    }
+    
+    public void CreateSfxTowerExplode(Vector3 position)
+    {
+        var audioSource = _factory.CreateSFX(position, AssetPath.SfxTowerExplosion);
         audioSource.PlayOneShot(audioSource.clip);
         Destroy(audioSource.gameObject, audioSource.clip.length);
     }

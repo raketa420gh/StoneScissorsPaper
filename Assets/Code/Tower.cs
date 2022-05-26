@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class Tower : UnitBase
 {
+    public event Action OnExplode;
+    
     [SerializeField] private int _armor;
     [SerializeField] private TMP_Text _tmpArmor;
     private int _currentArmor;
@@ -72,5 +74,7 @@ public class Tower : UnitBase
             rb.isKinematic = false;
             rb.AddForce(randomVector * 25, ForceMode.Impulse);
         }
+        
+        OnExplode?.Invoke();
     }
 }
