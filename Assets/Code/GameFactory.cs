@@ -32,4 +32,12 @@ public class GameFactory : IGameFactory
         var particleSystem = obj.GetComponentInChildren<ParticleSystem>();
         return particleSystem;
     }
+
+    public AudioSource CreateSFX(Vector3 position, string path = AssetPath.SfxUnitDeath, Transform parent = null)
+    {
+        GameObject obj = _assetProvider.Instantiate(path, position, Quaternion.identity);
+        obj.transform.SetParent(parent);
+        var audioSource = obj.GetComponentInChildren<AudioSource>();
+        return audioSource;
+    }
 }

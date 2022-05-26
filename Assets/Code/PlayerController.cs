@@ -6,21 +6,23 @@ using Zenject;
 public class PlayerController : MonoBehaviour
 {
     public event Action OnLose;
-    
+
     [SerializeField] private GameObject _uiPanel;
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private Tower _tower;
     [SerializeField] private CreationZone _creationZone;
     [SerializeField] private List<UIButtonPointer> _uiButtonPointers = new List<UIButtonPointer>();
     private GameFactory _factory;
+    private SoundPlayer _soundPlayer;
     private UnitsCounter _unitsCounter;
 
     public PlayerData PlayerData => _playerData;
 
     [Inject]
-    public void Construct(GameFactory factory, UnitsCounter unitsCounter)
+    public void Construct(GameFactory factory, SoundPlayer soundPlayer, UnitsCounter unitsCounter)
     {
         _factory = factory;
+        _soundPlayer = soundPlayer;
         _unitsCounter = unitsCounter;
     }
 
@@ -33,23 +35,23 @@ public class PlayerController : MonoBehaviour
         }
 
         _tower.OnDestroy += OnDestroyTower;
-        
+
         _creationZone.Initialize(_playerData);
         _unitsCounter.AddTower(_tower);
         _tower.Initialize(_playerData);
     }
 
-    public void Activate() => 
+    public void Activate() =>
         _uiPanel.SetActive(true);
 
-    public void Deactivate() => 
+    public void Deactivate() =>
         _uiPanel.SetActive(false);
 
     public void HideAllPointers()
     {
         foreach (var uiButtonPointer in _uiButtonPointers)
             uiButtonPointer.HidePointer();
-        
+
         _creationZone.Hide();
     }
 
@@ -83,9 +85,10 @@ public class PlayerController : MonoBehaviour
     private void OnPointerDragEnd(UnitData unitData, Pointer pointer, Vector3 position)
     {
         TryToCreateUnit(unitData, pointer, position);
+        _soundPlayer.CreateSfxUnitCreation(pointer.gameObject.transform.position);
         _creationZone.Hide();
     }
 
-    private void OnDestroyTower(UnitBase unitBase) => 
+    private void OnDestroyTower(UnitBase unitBase) =>
         OnLose?.Invoke();
 }

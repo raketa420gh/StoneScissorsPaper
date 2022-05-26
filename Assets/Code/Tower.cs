@@ -23,6 +23,7 @@ public class Tower : UnitBase
 
         var boxCollider = GetComponent<BoxCollider>();
         Destroy(boxCollider);
+        Destroy(_tmpArmor);
         ExplodeTower();
         await UniTask.Delay(TimeSpan.FromSeconds(2));
         base.DestroyUnit();

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -14,27 +15,32 @@ public class GameLoop : MonoBehaviour
     private float _currentTimer;
     private int _activePlayerNumber = 0;
 
-    private void Start()
+    private void Awake()
     {
-        _playerController1.Initialize();
-        _playerController2.Initialize();
-        _uiStartPanel.Initialize();
-        _uiFinishPanel.Initialize();
-
         _playerController1.OnLose += OnLose1;
         _playerController2.OnLose += OnLose2;
         _uiStartPanel.OnStartButtonClicked += StartGame;
         _uiFinishPanel.OnRestartButtonClicked += RestartGame;
     }
 
+    private void Start()
+    {
+        _playerController1.Initialize();
+        _playerController2.Initialize();
+        _uiStartPanel.Initialize();
+        _uiFinishPanel.Initialize();
+    }
+
     private void OnLose1()
     {
         _uiFinishPanel.Show();
+        _uiFinishPanel.SetWinTextColor(_playerController2.PlayerData.Material.color);
     }
 
     private void OnLose2()
     {
         _uiFinishPanel.Show();
+        _uiFinishPanel.SetWinTextColor(_playerController1.PlayerData.Material.color);
     }
 
     private void Update()

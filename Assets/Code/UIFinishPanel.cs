@@ -1,11 +1,14 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIFinishPanel : MonoBehaviour, IUIPanel
 {
     public event Action OnRestartButtonClicked;
+    
     [SerializeField] private Button _restartButton;
+    [SerializeField] private TMP_Text _winText;
 
     public void Initialize()
     {
@@ -15,9 +18,12 @@ public class UIFinishPanel : MonoBehaviour, IUIPanel
             OnRestartButtonClicked?.Invoke();
         }));
     }
-    
+
+    public void SetWinTextColor(Color color) => 
+        _winText.color = color;
+
     public void Show() => 
-        gameObject.SetActive(false);
+        gameObject.SetActive(true);
 
     public void Hide() => 
         gameObject.SetActive(false);
