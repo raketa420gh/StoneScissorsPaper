@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 public class PlayerController : MonoBehaviour
 {
+    public event Action OnLose;
+    
     [SerializeField] private GameObject _uiPanel;
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private Tower _tower;
@@ -28,6 +31,8 @@ public class PlayerController : MonoBehaviour
             uiButtonPointer.Initialize();
             uiButtonPointer.OnPointerDragEnd += OnPointerDragEnd;
         }
+
+        _tower.OnDestroy += OnDestroyTower;
         
         _creationZone.Initialize(_playerData);
         _unitsCounter.AddTower(_tower);
@@ -80,4 +85,7 @@ public class PlayerController : MonoBehaviour
         TryToCreateUnit(unitData, pointer, position);
         _creationZone.Hide();
     }
+
+    private void OnDestroyTower(UnitBase unitBase) => 
+        OnLose?.Invoke();
 }

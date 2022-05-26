@@ -25,15 +25,19 @@ public abstract class UnitBase : MonoBehaviour
         _meshRenderers = GetComponentsInChildren<MeshRenderer>();
         _bounceScaleAnimation = GetComponent<BounceScaleAnimation>();
     }
-    
+
     public virtual void DestroyUnit()
+    {
+        OnDestroy?.Invoke(this);
+        Destroy(gameObject);
+    }
+
+    public void CreateVFX()
     {
         var vfx = _factory.CreateVFX(transform.position);
         vfx.startColor = _playerData.Material.color;
         vfx.Play();
         Destroy(vfx.gameObject, 1f);
-        Destroy(gameObject);
-        OnDestroy?.Invoke(this);
     }
     
     public void ActivateBounceAnimation() => 

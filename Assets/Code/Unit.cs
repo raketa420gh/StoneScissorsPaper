@@ -71,4 +71,10 @@ public class Unit : UnitBase
 
     public void MoveTo(Transform target) =>
         _aiPath.destination = target.position;
+
+    public override void DestroyUnit()
+    {
+        CreateVFX();
+        base.DestroyUnit();
+    }
 }

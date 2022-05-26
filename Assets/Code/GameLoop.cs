@@ -20,9 +20,21 @@ public class GameLoop : MonoBehaviour
         _playerController2.Initialize();
         _uiStartPanel.Initialize();
         _uiFinishPanel.Initialize();
-        
+
+        _playerController1.OnLose += OnLose1;
+        _playerController2.OnLose += OnLose2;
         _uiStartPanel.OnStartButtonClicked += StartGame;
         _uiFinishPanel.OnRestartButtonClicked += RestartGame;
+    }
+
+    private void OnLose1()
+    {
+        _uiFinishPanel.Show();
+    }
+
+    private void OnLose2()
+    {
+        _uiFinishPanel.Show();
     }
 
     private void Update()

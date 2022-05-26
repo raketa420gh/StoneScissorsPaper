@@ -1,5 +1,8 @@
+using System;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Tower : UnitBase
 {
@@ -12,6 +15,17 @@ public class Tower : UnitBase
         base.Initialize(playerData, unitData);
         ResetArmor();
         SetupView(playerData);
+    }
+
+    public override async void DestroyUnit()
+    {
+        CreateVFX();
+
+        var boxCollider = GetComponent<BoxCollider>();
+        Destroy(boxCollider);
+        ExplodeTower();
+        await UniTask.Delay(TimeSpan.FromSeconds(2));
+        base.DestroyUnit();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -46,19 +60,16 @@ public class Tower : UnitBase
         ActivateBounceAnimation();
     }
 
-    public override void DestroyUnit()
+    private void ExplodeTower()
     {
-        //base.DestroyUnit();
-
         var rigidbodies = GetComponentsInChildren<Rigidbody>();
-        var randomOffset = Random.Range(-0.5f, 0.5f);
-        var randomVector = new Vector3(0, 1 + randomOffset, 0);
-        
+
         foreach (var rb in rigidbodies)
         {
+            var randomOffset = Random.Range(-0.25f, 0.25f);
+            var randomVector = new Vector3(0 + randomOffset, 1 + randomOffset, 0);
             rb.isKinematic = false;
             rb.AddForce(randomVector * 25, ForceMode.Impulse);
         }
-        
     }
 }
