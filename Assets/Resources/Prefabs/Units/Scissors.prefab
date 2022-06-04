@@ -137,7 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f29e30105ef544080b89d09e41a60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bounceScaleAnimation: {fileID: 4093657653059644926}
 --- !u!95 &159581592484828787
 Animator:
   serializedVersion: 3
@@ -275,11 +274,11 @@ PrefabInstance:
     - target: {fileID: 23117223249564494, guid: 07f9048ddafe046b893ea5846d9de1f4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: 464aa8dc83108f249a5b3cd75f0f5d85, type: 2}
     - target: {fileID: 23265306990418686, guid: 07f9048ddafe046b893ea5846d9de1f4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: 464aa8dc83108f249a5b3cd75f0f5d85, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07f9048ddafe046b893ea5846d9de1f4, type: 3}
 --- !u!4 &307426566476313645 stripped

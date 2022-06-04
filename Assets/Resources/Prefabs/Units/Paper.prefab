@@ -137,7 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f29e30105ef544080b89d09e41a60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bounceScaleAnimation: {fileID: 4093657653059644926}
 --- !u!95 &159581592484828787
 Animator:
   serializedVersion: 3
@@ -264,6 +263,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 492b011d6eee00845933355456e558b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 464aa8dc83108f249a5b3cd75f0f5d85, type: 2}
     - target: {fileID: 919132149155446097, guid: 492b011d6eee00845933355456e558b9, type: 3}
       propertyPath: m_Name
       value: paper

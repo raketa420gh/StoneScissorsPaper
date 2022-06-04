@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f29e30105ef544080b89d09e41a60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bounceScaleAnimation: {fileID: 7903694259405159756}
 --- !u!54 &3784255693928708363
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -260,7 +259,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 464aa8dc83108f249a5b3cd75f0f5d85, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
